@@ -22,7 +22,7 @@ class Dictionary:
         """Get definitions of text and return dictionary of definitions"""
         url = "https://api.dictionaryapi.dev/api/v2/entries/%s/%s" % (language, text)
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        
+
         try:
             with urllib.request.urlopen(req) as f:
                 response = f.read().decode("utf-8")
@@ -85,25 +85,25 @@ class Dictionary:
             <body>
                 <style>
                     h1 {
-                        font-size: 1.1rem;
+                        font-size: 2rem;
                         font-weight: 500;
                         margin: 0 0 0.25em 0;
                         font-family: system;
                     }
                     h2 {
-                        font-size: 0.85rem;
+                        font-size: 1.2rem;
                         font-weight: 400;
                         margin: 0 0 0.5em 0;
                     }
                     p {
-                        font-size: 0.7rem;
+                        font-size: 1.2rem;
                         margin-top: 0;
                     }
                     a {
                         font-weight: normal;
                         font-style: italic;
                         padding-left: 0.5em;
-                        font-size: 0.8rem;
+                        font-size: 1rem;
                     }
                 </style>
                 %s
