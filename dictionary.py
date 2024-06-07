@@ -21,9 +21,12 @@ class Dictionary:
     def define(text: str, language: str, num_definitions: int = None) -> dict:
         """Get definitions of text and return dictionary of definitions"""
         url = "https://api.dictionaryapi.dev/api/v2/entries/%s/%s" % (language, text)
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        
         try:
-            with urllib.request.urlopen(url) as f:
+            with urllib.request.urlopen(req) as f:
                 response = f.read().decode("utf-8")
+            response = json.loads(response)[0]
         except urllib.error.HTTPError:
             sublime.status_message("No definition found for %s" % text)
             return {}
@@ -31,7 +34,6 @@ class Dictionary:
             sublime.status_message("Error when defining %s" % text)
             return {}
 
-        response = json.loads(response)[0]
         definitions = {}
 
         definitions["word"] = response.get("word")
